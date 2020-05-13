@@ -42,36 +42,42 @@
                                 <input type="checkbox"><i></i>
                             </label>
                         </th>
-                        <th>Tên Danh Mục</th>
-                        <th>Mô Tả</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Giá</th>
+                        <th>Hình Sản Phẩm</th>
+                        <th>Danh Mục</th>
+                        <th>Thương Hiệu</th>
                         <th>Hiển Thị</th>
                         <th style="width:30px;"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($all_brand_product as $key => $brand_pro)
+                    @foreach($all_product as $key => $pro)
                         <tr>
                             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                            <td>{{$brand_pro->brand_name}}</td>
-                            <td>{{$brand_pro->brand_desc}}</td>
+                            <td>{{ $pro->product_name }}</td>
+                            <td>{{ $pro->product_price }}</td>
+                            <td><img src="public/uploads/product/{{ $pro->product_image }}" height="100" width="100"></td>
+                            <td>{{ $pro->category_name }}</td>
+                            <td>{{ $pro->brand_name }}</td>
                             <td>
                                 <?php
-                                if ($brand_pro->brand_status==0){
+                                if ($pro -> product_status==0){
                                 ?>
-                                <a href="{{URL::to('/unactive-brand-product/'.$brand_pro->brand_id)}}"><span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>
+                                <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span class="fa-thumbs-styling fa fa-thumbs-up"></span></a>
                                 <?php
-                                }else if($brand_pro->brand_status==1){
+                                }else if($pro->product_status==1){
                                 ?>
-                                <a href="{{URL::to('/active-brand-product/'.$brand_pro->brand_id)}}"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>
+                                <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><span class="fa-thumbs-styling fa fa-thumbs-down"></span></a>
                                 <?php
                                 }
                                 ?>
                             </td>
                             <td>
 
-                                <a href="{{URL::to('/edit-brand-product/'.$brand_pro->brand_id)}}" class="styling-edit active" ui-toggle-class="">
+                                <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="styling-edit active" ui-toggle-class="">
                                     <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-                                <a onclick="return confirm('Bạn có muốn xoá không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro->brand_id)}}" class="styling-edit active" ui-toggle-class="">
+                                <a onclick="return confirm('Bạn có muốn xoá không?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="styling-edit active" ui-toggle-class="">
                                     <i class="fa fa-times text-danger text"></i></a>
                             </td>
                         </tr>
