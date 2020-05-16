@@ -106,7 +106,7 @@ class ProductController extends Controller
             $get_image->move('public/uploads/product',$new_image);
             $data['product_image'] = $new_image;
             DB::table('tbl_product')->where('product_id',$product_id)->update($data);
-            Session::put('message','Cập nhâth sản phẩm thành công');
+            Session::put('message','Cập nhật sản phẩm thành công');
             return Redirect::to('add-product');
         }
 
